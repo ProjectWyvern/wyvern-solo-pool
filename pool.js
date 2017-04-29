@@ -87,7 +87,7 @@ wyvRPC('getnewaddress', [], function(addr) {
     var now = Date.now() / 1000;
     shares = shares.filter(function(s) { return (now - s.timestamp) < 600; });
     for (var i = 0; i < shares.length; i++)
-      difficulty += diff;
+      difficulty += shares[i].share.difficulty;
     var hashrate = difficulty * Math.pow(2, 32);
     hashrate /= 600;
     log.info({clients: clients, shares600s: shares.length, hashrate600s: (hashrate / 1e9) + ' GH/s'}, 'Current pool statistics');
